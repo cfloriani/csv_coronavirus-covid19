@@ -2,7 +2,6 @@ import json,csv
 from urllib.request import urlopen
 
 arq = urlopen('https://api.covid19api.com/all').read().decode('utf8') #usa api como fonte de dados
-#arq = open('db.txt', 'r').read() #usa o db.txt como fonte de dados
 fulldata = json.loads(arq)
 data = {} #{'País':(Deaths,Confirmed,Recovered)}
 
@@ -29,13 +28,3 @@ with open('export.csv','w') as arquivo:
 	writer.writerow(('País', 'Mortes', 'Infectados','Recuperados'))
 	for i in data:
 		writer.writerow((i,data[i][0],data[i][1],data[i][2]))
-
-#imprime na tela
-'''
-for i in data:
-	print('Pais:' ,i)
-	print('Mortes: ',data[i][0])
-	print('Infectados: ',data[i][1])
-	print('Recuperados: ',data[i][2])
-	print('-------------------------------')
-'''
